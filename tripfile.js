@@ -39,6 +39,7 @@ const optimise = compose(
   plugin('babel', {
     root: 'src',
     presets: ['babili'],
+    sourceMaps: false,
   }),
 );
 
