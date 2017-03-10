@@ -1,0 +1,4 @@
+extends: airbnb
+root: true
+rules:
+  import/no-extraneous-dependencies: [2, {}]

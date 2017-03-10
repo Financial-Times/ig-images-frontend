@@ -1,0 +1,38 @@
+{
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-babili": "^0.0.12",
+    "babel-preset-env": "^1.2.1",
+    "babel-preset-stage-0": "^6.22.0",
+    "babel-runtime": "^6.23.0",
+    "cssnano": "^3.10.0",
+    "dotenv": "^4.0.0",
+    "envify": "^4.0.0",
+    "eslint": "^3.17.1",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-babel": "^4.1.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.0",
+    "exhibit": "^0.11.0",
+    "exhibit-directory": "^0.11.0",
+    "exhibit-plugin-autoprefixer": "^0.11.0",
+    "exhibit-plugin-babel": "^0.11.0",
+    "exhibit-plugin-browserify": "^0.11.0",
+    "exhibit-plugin-postcss": "^0.11.0",
+    "exhibit-plugin-sass": "^0.11.0",
+    "exhibit-plugin-serve": "^0.11.0",
+    "exhibit-plugin-uglify": "^0.11.0",
+    "ft-graphics-deploy": "^0.1.0",
+    "query-string": "^4.3.2",
+    "regenerator-runtime": "^0.10.3",
+    "trip": "^1.0.3"
+  },
+  "private": true,
+  "scripts": {
+    "build": "trip build",
+    "start": "trip develop"
+  }
+}

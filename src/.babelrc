@@ -1,0 +1,15 @@
+{
+  "presets": [
+    [
+      "env", {
+        "targets": {
+          "chrome": 56,
+          "firefox": 53
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    "transform-flow-strip-types"
+  ]
+}
