@@ -13,14 +13,15 @@ const callService = async (endpointName, params) => {
     ''
   );
 
-  const url = `${process.env.SERVICE_ROOT}${encodeURIComponent(process.env.SERVICE_STAGE)}/${endpointName}?username=${encodeURIComponent(username)}&token=${encodeURIComponent(token)}${extra}`;
+  const url = `${process.env.SERVICE_ROOT}${encodeURIComponent(process.env.SERVICE_STAGE)}/${endpointName}?host=${encodeURIComponent(process.env.AUTH_HOST)}&username=${encodeURIComponent(username)}&token=${encodeURIComponent(token)}${extra}`;
 
   const res = await fetch(url);
 
   // redirect to login if not authorised
   if (res.status === 401) {
+    auth.clear();
     auth.redirectToLogin();
-    await new Promise(); // just hang here until redirected
+    await { then: () => {} }; // just hang here until redirected
   }
 
   if (!res.ok) throw new Error('Request failed');

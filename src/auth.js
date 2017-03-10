@@ -7,8 +7,19 @@ const STORAGE_PREFIX = 'ig-images_';
 
 export const get = () => ({ username, token });
 
+export const clear = () => {
+  username = undefined;
+  token = undefined;
+
+
+  localStorage.removeItem(`${STORAGE_PREFIX}username`);
+  localStorage.removeItem(`${STORAGE_PREFIX}token`);
+};
+
 export const redirectToLogin = () => {
-  location.href = `https://s3o.ft.com/authenticate?redirect=${encodeURIComponent(location.href)}`;
+  const loginURL = `https://s3o.ft.com/v2/authenticate?host=${encodeURIComponent(process.env.AUTH_HOST)}&redirect=${encodeURIComponent(location.href)}`;
+
+  location.href = loginURL;
 };
 
 // ensures the user has a valid token (redirects them away if not)
