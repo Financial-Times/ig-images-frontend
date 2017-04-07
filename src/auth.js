@@ -11,9 +11,8 @@ export const clear = () => {
   username = undefined;
   token = undefined;
 
-
-  localStorage.removeItem(`${STORAGE_PREFIX}username`);
-  localStorage.removeItem(`${STORAGE_PREFIX}token`);
+  sessionStorage.removeItem(`${STORAGE_PREFIX}username`);
+  sessionStorage.removeItem(`${STORAGE_PREFIX}token`);
 };
 
 export const redirectToLogin = () => {
@@ -31,9 +30,9 @@ export const start = () => {
   {
     const query = queryString.parse(location.search);
     if (query.username && query.token) {
-      // save them in localStorage
-      localStorage.setItem(`${STORAGE_PREFIX}username`, query.username);
-      localStorage.setItem(`${STORAGE_PREFIX}token`, query.token);
+      // save them in sessionStorage
+      sessionStorage.setItem(`${STORAGE_PREFIX}username`, query.username);
+      sessionStorage.setItem(`${STORAGE_PREFIX}token`, query.token);
 
       // remove query string from location bar
       history.replaceState({}, '', location.href.split('?')[0]);
@@ -41,8 +40,8 @@ export const start = () => {
   }
 
   // read username and token from local storage
-  username = localStorage.getItem(`${STORAGE_PREFIX}username`);
-  token = localStorage.getItem(`${STORAGE_PREFIX}token`);
+  username = sessionStorage.getItem(`${STORAGE_PREFIX}username`);
+  token = sessionStorage.getItem(`${STORAGE_PREFIX}token`);
 
   // redirect away if necessary
   if (!token) {
