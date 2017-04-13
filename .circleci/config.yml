@@ -1,0 +1,38 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/bertha-client
+    docker:
+      - image: callum85/node-with-flow:0.0.2
+    steps:
+      - checkout
+      - restore_cache:
+          key: bertha-client-{{ checksum "yarn.lock" }}
+      - run: yarn
+      - save_cache:
+          key: bertha-client-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules/
+      - run:
+          name: ESLint
+          command: yarn run eslint -- .
+      - run:
+          name: Flow type-checking
+          command: yarn run flow
+      - run:
+          name: Build
+          command: yarn run trip -- build
+      # - run:
+      #     name: AVA tests
+      #     command: yarn run ava
+      # - run:
+      #     name: Remove tests from dist
+      #     command: yarn run del -- ./dist/**/*.test.{js,js.map}
+      - store_artifacts:
+          path: dist/
+      - deploy:
+          name: Maybe deploy to npm
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              yarn run deploy
+            fi
