@@ -1,0 +1,12 @@
+[ignore]
+.*/node_modules/join-table/src/join-table.js
+.*/node_modules/join-table/src/join-table.test.js
+.*/node_modules/fbjs/.*
+.*/node_modules/aphrodite/.*
+
+[include]
+
+[libs]
+
+[options]
+experimental.const_params=true

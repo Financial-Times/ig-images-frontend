@@ -1,37 +1,25 @@
-import 'dotenv/config';
+// import 'dotenv/config';
 
+import { compose, plugin, cache, createMatcher } from 'exhibit';
 import Directory from 'exhibit-directory';
-import { compose, plugin, cache } from 'exhibit';
 import cssnano from 'cssnano';
 
 const src = new Directory('src');
-const dist = new Directory('dist');
-
-// hack to inject env vars in front-end code, until I find a better way
-const replaceEnvVars = (content) => {
-  let out = content.toString();
-
-  Object.keys(process.env).forEach((name) => {
-    const string = `process.env.${name}`;
-
-    out = out.split(string).join(`'${process.env[name]}'`);
-  });
-
-  return out;
-};
+const dist = new Directory('dist', { log: true });
+const isJSX = createMatcher('**/*.jsx');
 
 const preprocess = compose(
-  cache((content, name) => {
-    if (!name.endsWith('.js')) return content;
-
-    return replaceEnvVars(content);
-  }),
   plugin('babel', { root: 'src' }),
+
+  cache((content, name) => {
+    // TODO should babel plugin automate this step?
+    if (isJSX(name)) return { [name.replace(/\.jsx$/, '.js')]: content };
+    return content;
+  }),
+
   plugin('browserify', {
     root: 'src',
   }),
-  plugin('sass', { root: 'src' }),
-  plugin('autoprefixer'),
 );
 
 const optimise = compose(
@@ -42,6 +30,10 @@ const optimise = compose(
     sourceMaps: false,
   }),
 );
+
+export const clean = async () => {
+  await dist.write({});
+};
 
 export const build = async ({ dev }) => {
   if (!dev) process.env.NODE_ENV = 'production';
