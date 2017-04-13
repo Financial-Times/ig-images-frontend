@@ -51,6 +51,6 @@
   "scripts": {
     "build": "trip build",
     "start": "trip develop",
-    "deploy": "ft-graphics-deploy"
+    "deploy": "ft-graphics-deploy --confirm"
   }
 }
