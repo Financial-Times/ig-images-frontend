@@ -1,16 +1,16 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/bertha-client
+    working_directory: ~/ig-images-frontend
     docker:
       - image: callum85/node-with-flow:0.0.2
     steps:
       - checkout
       - restore_cache:
-          key: bertha-client-{{ checksum "yarn.lock" }}
+          key: ig-images-frontend-{{ checksum "yarn.lock" }}
       - run: yarn
       - save_cache:
-          key: bertha-client-{{ checksum "yarn.lock" }}
+          key: ig-images-frontend-{{ checksum "yarn.lock" }}
           paths:
             - node_modules/
       - run:
