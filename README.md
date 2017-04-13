@@ -1,4 +1,4 @@
-# WIP: IG Images frontend
+# WIP: IG Images frontend [![CircleCI](https://circleci.com/gh/Financial-Times/ig-images-frontend.svg?style=svg)](https://circleci.com/gh/Financial-Times/ig-images-frontend)
 
 The web interface for FT graphics staff to upload to IG Images. (See also: [IG Images backend](https://github.com/ft-interactive/ig-images-backend).)
 
