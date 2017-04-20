@@ -8,8 +8,8 @@ type ServiceParams = {
   [string]: string,
 };
 
-const SERVICE_ROOT = 'https://78qv8qc9kc.execute-api.eu-west-1.amazonaws.com/';
-const SERVICE_STAGE = 'dev';
+const SERVICE_ROOT = 'https://xblolpjxek.execute-api.eu-west-1.amazonaws.com/';
+const SERVICE_STAGE = 'production';
 
 export class BadCredentialsError extends Error {
   constructor(message: string) {
