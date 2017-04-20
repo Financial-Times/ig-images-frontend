@@ -31,8 +31,5 @@ jobs:
       - store_artifacts:
           path: dist/
       - deploy:
-          name: Maybe deploy to npm
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              yarn run deploy
-            fi
+          name: Deploy
+          command: yarn run deploy
