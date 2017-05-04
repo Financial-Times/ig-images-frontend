@@ -17,7 +17,7 @@ const getStyles = () => ({
     background: '#f0ffee',
   },
   loadingGraphic: {
-    background: 'purple',
+    background: '#f2f2f2',
     height: '100vw',
     width: '100vw',
     overflow: 'hidden',
