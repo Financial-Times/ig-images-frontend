@@ -2,7 +2,7 @@
 {
   const supportsDragAndDrop = (() => {
     const div = document.createElement('div');
-    return ('draggable' in div) || ('ondragstart' in div && 'ondrop' in div);
+    return 'draggable' in div || ('ondragstart' in div && 'ondrop' in div);
   })();
 
   const supportsFileReader = 'FormData' in window && 'FileReader' in window;
@@ -17,7 +17,8 @@
     return true;
   })();
 
-  window.cutsTheMustard = supportsDragAndDrop && supportsFileReader && supportsAsyncFunctions;
+  window.cutsTheMustard =
+    supportsDragAndDrop && supportsFileReader && supportsAsyncFunctions;
 }
 
 const addScript = (src, attributes, cb) => {
@@ -36,7 +37,7 @@ const addScript = (src, attributes, cb) => {
   if (typeof cb === 'function') {
     let called;
     const onScriptLoaded = () => {
-      const readyState = script.readyState;
+      const { readyState } = script;
       if (!readyState || /loaded|complete/.test(readyState)) {
         if (!called) {
           called = true;
@@ -95,15 +96,13 @@ if (window.cutsTheMustard) {
   Object.defineProperty(window, 'bootController', { value: bootController });
 
   // fix <html> classes
-  const classList = document.documentElement.classList;
+  const { classList } = document.documentElement;
   classList.remove('core');
   classList.add('enhanced');
 
   // add polyfill
   {
-    const features = [
-      'default',
-    ].join(',');
+    const features = ['default'].join(',');
 
     const polyfillUrl = `https://cdn.polyfill.io/v2/polyfill.min.js?features=${features}`;
 

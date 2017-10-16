@@ -9,17 +9,36 @@ export type ImageRecordModel = {
   status?: 'uploaded' | 'uploading' | 'failed',
 };
 
-export type ActionSetImageUploading = { type: 'SET_IMAGE_UPLOADING', id: number };
+export type ActionSetImageUploading = {
+  type: 'SET_IMAGE_UPLOADING',
+  id: number,
+};
+
 export type ActionClearImageStatus = { type: 'CLEAR_IMAGE_STATUS', id: number };
-export type ActionSetAuthCredentials = { type: 'SET_AUTH_CREDENTIALS', username: string, token: string };
+
+export type ActionSetAuthCredentials = {
+  type: 'SET_AUTH_CREDENTIALS',
+  username: string,
+  token: string,
+};
+
 export type ActionFetchRemoteImages = { type: 'FETCH_REMOTE_IMAGES' };
-export type ActionServiceRefusedCredentials = { type: 'SERVICE_REFUSED_CREDENTIALS' };
-export type ActionSetRemotePrefix = { type: 'SET_REMOTE_PREFIX', prefix: string };
+
+export type ActionServiceRefusedCredentials = {
+  type: 'SERVICE_REFUSED_CREDENTIALS',
+};
+
+export type ActionSetRemotePrefix = {
+  type: 'SET_REMOTE_PREFIX',
+  prefix: string,
+};
+
 export type ActionSetAppReady = { type: 'SET_APP_READY' };
+
 export type ActionStartUp = { type: 'START_UP' };
 
 export type Action =
-    { type: 'ADD_REMOTE_IMAGES', images: Array<{ name: string, id: number }> }
+  | { type: 'ADD_REMOTE_IMAGES', images: Array<{ name: string, id: number }> }
   | { type: 'ADD_FILES', files: Array<{ id: number, file: File }> }
   | { type: 'SET_VIEWPORT_SIZE', width: number, height: number }
   | { type: 'PUBLISH_IMAGE', id: number, file: File }
@@ -34,5 +53,4 @@ export type Action =
   | ActionServiceRefusedCredentials
   | ActionStartUp
   | ActionSetRemotePrefix
-  | ActionSetAppReady
-;
+  | ActionSetAppReady;

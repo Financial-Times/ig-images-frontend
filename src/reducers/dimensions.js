@@ -12,7 +12,10 @@ const defaultState = {
   viewportHeight: window.innerHeight || 800,
 };
 
-const dimensionsReducer = (state: State = defaultState, action: Action): State => {
+const dimensionsReducer = (
+  state: State = defaultState,
+  action: Action,
+): State => {
   switch (action.type) {
     case 'SET_VIEWPORT_SIZE':
       return {

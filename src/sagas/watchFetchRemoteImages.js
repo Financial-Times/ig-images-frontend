@@ -22,7 +22,11 @@ function* fetchRemoteImages() {
 
   const { images, prefix } = response;
 
-  if (typeof prefix !== 'string' || !Array.isArray(images) || !images.every(item => typeof item === 'string')) {
+  if (
+    typeof prefix !== 'string' ||
+    !Array.isArray(images) ||
+    !images.every(item => typeof item === 'string')
+  ) {
     throw new Error('Bad response from list API');
   }
 

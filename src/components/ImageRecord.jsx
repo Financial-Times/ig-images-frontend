@@ -29,7 +29,7 @@ type Props = {
   styles: Object,
   file: File & { preview: string },
   onPublishClick: () => {},
-}
+};
 
 const getStyles = ({ subtleButton, activeBlue }) => ({
   container: {
@@ -81,7 +81,8 @@ const getStyles = ({ subtleButton, activeBlue }) => ({
     maxWidth: '100%',
     maxHeight: '100%',
     backgroundColor: '#fff',
-    backgroundImage: 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)',
+    backgroundImage:
+      'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)',
     backgroundSize: '20px 20px',
     backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px',
   },
@@ -111,32 +112,44 @@ const getStyles = ({ subtleButton, activeBlue }) => ({
   },
 });
 
-const ImageRecord = ({
-  name,
-  isLocal,
-  // isUploading,
-  uploadProgress,
-  remotePrefix,
-  styles,
-  file,
-  onPublishClick,
-  status,
-  // recentlyUploaded,
-  // recentlyFailed,
-}: Props) => {
+const ImageRecord = (props: Props) => {
+  const {
+    name,
+    isLocal,
+    uploadProgress,
+    remotePrefix,
+    styles,
+    file,
+    onPublishClick,
+    status,
+  } = props;
+
   const remoteURL = `${remotePrefix}${name}`; // useful even if not uploaded yet
   const url = isLocal ? file.preview : remoteURL;
-  const thumbnailURL = isLocal ? url : getImageServiceURL(url, { height: '120', width: '120', fit: 'scale-down' });
+  const thumbnailURL = isLocal
+    ? url
+    : getImageServiceURL(url, {
+      height: '120',
+      width: '120',
+      fit: 'scale-down',
+    });
 
   let srcSet;
   let sizes;
   if (!isLocal) {
-    srcSet = getImageServiceSet(url, renderableThumbSizes, { fit: 'scale-down' });
+    srcSet = getImageServiceSet(url, renderableThumbSizes, {
+      fit: 'scale-down',
+    });
 
-    sizes = `${thumbSizes.reduceRight((acc, { pageWidth, size }) => [
-      ...acc,
-      `(min-width: ${pageWidth}px) ${size}px`,
-    ], []).join(', ')}, ${defaultThumbSize}px`;
+    sizes = `${thumbSizes
+      .reduceRight(
+        (acc, { pageWidth, size }) => [
+          ...acc,
+          `(min-width: ${pageWidth}px) ${size}px`,
+        ],
+        [],
+      )
+      .join(', ')}, ${defaultThumbSize}px`;
   }
 
   const img = (
@@ -151,31 +164,40 @@ const ImageRecord = ({
 
   return (
     <div {...css(styles.container, isLocal && styles.container_local)}>
-      {isLocal ?
-        <div {...css(styles.thumbContainer)}>{img}</div> :
-        <a href={url} {...css(styles.thumbContainer, styles.thumbContainer_link)}>{img}</a>
-      }
+      {isLocal ? (
+        <div {...css(styles.thumbContainer)}>{img}</div>
+      ) : (
+        <a
+          href={url}
+          {...css(styles.thumbContainer, styles.thumbContainer_link)}
+        >
+          {img}
+        </a>
+      )}
 
       <div {...css(styles.controlsContainer)}>
         <div {...css(styles.buttonsRow)}>
-          {isLocal && status !== 'uploading' ?
-            <button onClick={onPublishClick} {...css(styles.button)}>Publish</button> :
-
+          {isLocal && status !== 'uploading' ? (
+            <button onClick={onPublishClick} {...css(styles.button)}>
+              Publish
+            </button>
+          ) : (
             <CopyToClipboard text={remoteURL}>
               <button {...css(styles.button)}>Copy URL</button>
             </CopyToClipboard>
-          }
+          )}
         </div>
 
         <div {...css(styles.urlContainer)}>
-          {!isLocal || status === 'uploading' ?
-            <input readOnly value={remoteURL} {...css(styles.urlBox)} /> :
-            null
-          }
+          {!isLocal || status === 'uploading' ? (
+            <input readOnly value={remoteURL} {...css(styles.urlBox)} />
+          ) : null}
         </div>
 
+        {/* FlowFixMe */}
         <div {...css(styles.statusMessage)}>
           {(() => {
+            // FlowFixMe
             switch (status) {
               case 'uploading':
                 return `Uploading: ${Math.round(uploadProgress * 100)}%`;
@@ -183,7 +205,8 @@ const ImageRecord = ({
                 return 'Uploaded ✅';
               case 'failed':
                 return 'Upload failed ❌';
-              default: return null;
+              default:
+                return null;
             }
           })()}
         </div>
@@ -196,6 +219,5 @@ const mapStateToProps = state => ({
   remotePrefix: state.remotePrefix,
 });
 
-export default connect(
-  mapStateToProps,
-)(withStyles(getStyles)(ImageRecord));
+// $FlowFixMe
+export default connect(mapStateToProps)(withStyles(getStyles)(ImageRecord));

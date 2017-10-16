@@ -14,13 +14,13 @@ export default function* rootSaga(): Generator<*, *, *> {
 
   // handle user returning from a successful s3o login just now
   {
-    const query = queryString.parse(location.search);
+    const query = queryString.parse(window.location.search);
     if (query.username && query.token) {
       // save them in sessionStorage
       storedCredentials.set({ username: query.username, token: query.token });
 
       // remove query string from location bar, for tidiness
-      history.replaceState({}, '', location.href.split('?')[0]);
+      window.history.replaceState({}, '', window.location.href.split('?')[0]);
     }
   }
 

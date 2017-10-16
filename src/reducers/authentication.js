@@ -2,10 +2,7 @@
 
 import type { Action } from '../types';
 
-type State =
-  | { username: string, token: string}
-  | null
-;
+type State = { username: string, token: string } | null;
 
 const authenticationReducer = (state: State = null, action: Action): State => {
   switch (action.type) {

@@ -4,7 +4,7 @@ import { css, withStyles, ThemeProvider } from 'react-with-styles';
 
 import DefaultTheme from './DefaultTheme';
 
-ThemedStyleSheet.registerDefaultTheme(DefaultTheme);
+ThemedStyleSheet.registerTheme(DefaultTheme);
 ThemedStyleSheet.registerInterface(aphroditeInterface);
 
 export { css, withStyles, ThemeProvider, ThemedStyleSheet };

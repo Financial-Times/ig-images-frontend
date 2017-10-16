@@ -8,7 +8,9 @@ type Props = {
   onBrowseClick: () => void,
 };
 
-const getStyles = ({ button, offWhite, lightGrey, greyText, activeBlue }) => ({
+const getStyles = ({
+  button, offWhite, lightGrey, greyText, activeBlue,
+}) => ({
   header: {
     background: offWhite,
     position: 'relative',
@@ -48,10 +50,19 @@ const Header = ({ styles, onBrowseClick }: Props) => (
     <h1 {...css(styles.title)}>IG images</h1>
 
     <div {...css(styles.instructions)}>
-      <button {...css(styles.browseButton)} onClick={onBrowseClick}>Browse</button>&nbsp;&nbsp;<span {...css(styles.dragAndDropMessage)}>or drop image files onto this page.</span>
+      <button {...css(styles.browseButton)} onClick={onBrowseClick}>
+        Browse
+      </button>&nbsp;&nbsp;<span {...css(styles.dragAndDropMessage)}>
+        or drop image files onto this page.
+                           </span>
     </div>
 
-    <a {...css(styles.systemInfoLink)} href="https://dewey.ft.com/ig-images.html">About</a>
+    <a
+      {...css(styles.systemInfoLink)}
+      href="https://dewey.ft.com/ig-images.html"
+    >
+      About
+    </a>
   </header>
 );
 
