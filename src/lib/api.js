@@ -20,20 +20,24 @@ export class BadCredentialsError extends Error {
     if (typeof Error.captureStackTrace === 'function') {
       Error.captureStackTrace(this, this.constructor);
     } else {
-      this.stack = (new Error(message)).stack;
+      this.stack = new Error(message).stack;
     }
   }
 }
 
-export const call = async (endpointName: EndpointName, params: ServiceParams): Object => {
+export const call = async (
+  endpointName: EndpointName,
+  params: ServiceParams,
+): Object => {
   const allParams = {
     ...params,
     host: 'ig-images',
   };
 
-  const query = Object.keys(allParams).map(name =>
-    `${encodeURIComponent(name)}=${encodeURIComponent(allParams[name])}`,
-  ).join('&');
+  const query = Object.keys(allParams)
+    .map(name =>
+      `${encodeURIComponent(name)}=${encodeURIComponent(allParams[name])}`)
+    .join('&');
 
   const url = `${SERVICE_ROOT}${SERVICE_STAGE}/${endpointName}?${query}`;
 

@@ -1,9 +1,9 @@
 import { delay } from 'redux-saga';
 
 const redirectToLogin = async () => {
-  const loginURL = `https://s3o.ft.com/v2/authenticate?host=ig-images&redirect=${encodeURIComponent(location.href)}`;
+  const loginURL = `https://s3o.ft.com/v2/authenticate?host=ig-images&redirect=${encodeURIComponent(window.location.href)}`;
 
-  location.href = loginURL;
+  window.location.href = loginURL;
 
   await delay(3000);
 

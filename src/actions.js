@@ -18,7 +18,10 @@ export const fetchRemoteImages = (): ActionFetchRemoteImages => ({
   type: 'FETCH_REMOTE_IMAGES',
 });
 
-export const setAuthCredentials = (username: string, token: string): ActionSetAuthCredentials => ({
+export const setAuthCredentials = (
+  username: string,
+  token: string,
+): ActionSetAuthCredentials => ({
   type: 'SET_AUTH_CREDENTIALS',
   username,
   token,
@@ -74,7 +77,10 @@ export const setImageRemoteName = (id: number, name: string): Action => ({
   name,
 });
 
-export const setImageUploadProgress = (id: number, progress: number): Action => ({
+export const setImageUploadProgress = (
+  id: number,
+  progress: number,
+): Action => ({
   type: 'SET_IMAGE_UPLOAD_PROGRESS',
   id,
   progress,

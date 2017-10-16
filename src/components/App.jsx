@@ -49,14 +49,14 @@ class App extends React.Component {
     const { styles, onFilesReceived, ready } = this.props;
 
     if (!ready) {
-      return (
-        <div {...css(styles.loadingGraphic)} />
-      );
+      return <div {...css(styles.loadingGraphic)} />;
     }
 
     return (
       <Dropzone
-        ref={(node) => { this.dropzone = node; }}
+        ref={(node) => {
+          this.dropzone = node;
+        }}
         disableClick
         maxSize={30000000}
         accept="image/png,image/jpeg,image/svg+xml"
@@ -90,7 +90,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withStyles(getStyles)(App));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(getStyles)(App));

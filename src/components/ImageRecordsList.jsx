@@ -10,7 +10,7 @@ import type { ImageRecordModel } from '../types';
 type Props = {
   imageRecords: ImageRecordModel[],
   styles: Object,
-  onPublishClick: () => {},
+  onPublishClick: (id: number, file: File) => {},
 };
 
 const getStyles = () => ({
@@ -29,7 +29,8 @@ const ImageRecordsList = ({ imageRecords, styles, onPublishClick }: Props) => (
       <li key={imageRecord.id}>
         <ImageRecord
           {...imageRecord}
-          onPublishClick={() => onPublishClick(imageRecord.id, imageRecord.file)}
+          onPublishClick={() =>
+            onPublishClick(imageRecord.id, imageRecord.file)}
         />
       </li>
     ))}
@@ -46,7 +47,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withStyles(getStyles)(ImageRecordsList));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(getStyles)(ImageRecordsList));
