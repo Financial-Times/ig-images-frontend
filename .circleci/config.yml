@@ -15,13 +15,13 @@ jobs:
             - node_modules/
       - run:
           name: ESLint
-          command: ./node-modules/.bin/eslint .
+          command: ./node_modules/.bin/eslint .
       - run:
           name: Flow type-checking
-          command: ./node-modules/.bin/flow
+          command: ./node_modules/.bin/flow
       - run:
           name: Build
-          command: ./node-modules/.bin/trip build
+          command: ./node_modules/.bin/trip build
       # - run:
       #     name: AVA tests
       #     command: npm run ava
