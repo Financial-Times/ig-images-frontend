@@ -1,12 +1,18 @@
 // @flow
 
-import React from 'react';
+import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import { connect } from 'react-redux';
 import ImageRecordsList from './ImageRecordsList';
 import Header from './Header';
 import { addFiles } from '../actions';
 import { css, withStyles } from '../styles';
+
+type Props = {
+  styles: Object,
+  ready: boolean,
+  onFilesReceived: () => void,
+};
 
 const getStyles = () => ({
   app: {
@@ -28,22 +34,19 @@ const getStyles = () => ({
   },
 });
 
-class App extends React.Component {
+class App extends Component<Props> {
   constructor() {
     super();
 
     this.onBrowseClick = () => {
+      if (!this.dropzone) throw new Error('dropzone should be defined');
       this.dropzone.open();
     };
   }
 
   onBrowseClick: () => void;
-  dropzone: Object;
-  props: {
-    styles: Object,
-    ready: boolean,
-    onFilesReceived: () => void,
-  };
+  dropzone: null | Object;
+  props: Props;
 
   render() {
     const { styles, onFilesReceived, ready } = this.props;

@@ -29,8 +29,9 @@ const ImageRecordsList = ({ imageRecords, styles, onPublishClick }: Props) => (
       <li key={imageRecord.id}>
         <ImageRecord
           {...imageRecord}
-          onPublishClick={() =>
-            onPublishClick(imageRecord.id, imageRecord.file)}
+          onPublishClick={() => {
+            if (imageRecord.file) { onPublishClick(imageRecord.id, imageRecord.file); }
+          }}
         />
       </li>
     ))}

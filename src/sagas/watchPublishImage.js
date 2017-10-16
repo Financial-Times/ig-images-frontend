@@ -46,8 +46,8 @@ const getFileUploadChannel = (url, file) =>
     };
   });
 
-export default function* watchPublishImage() {
-  yield takeEvery('PUBLISH_IMAGE', function* publishImage(action) {
+export default function* watchPublishImage(): Generator<*, *, *> {
+  yield takeEvery('PUBLISH_IMAGE', function* publishImage(action): Generator<*, *, *> {
     yield put(actions.setImageUploading(action.id));
 
     const { authentication: { username, token } } = yield select();

@@ -219,4 +219,5 @@ const mapStateToProps = state => ({
   remotePrefix: state.remotePrefix,
 });
 
+// $FlowFixMe
 export default connect(mapStateToProps)(withStyles(getStyles)(ImageRecord));
