@@ -51,7 +51,6 @@ export const develop = ({ prod }) => {
   src.watch(compose(
     preprocess,
     prod ? optimise : null,
-    plugin('serve', { reload: true }),
     dist.write,
   ));
 };

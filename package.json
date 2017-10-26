@@ -26,7 +26,6 @@
     "exhibit-plugin-babel": "^0.13.1",
     "exhibit-plugin-browserify": "^0.13.1",
     "exhibit-plugin-postcss": "^0.13.1",
-    "exhibit-plugin-serve": "^0.13.1",
     "exhibit-plugin-uglify": "^0.13.1",
     "flow-bin": "^0.57.3",
     "flow-typed": "^2.2.1",
