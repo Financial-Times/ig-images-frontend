@@ -182,7 +182,7 @@ const ImageRecord = (props: Props) => {
               Publish
             </button>
           ) : (
-            <CopyToClipboard text={remoteURL}>
+            <CopyToClipboard text={getImageServiceURL(remoteURL)}>
               <button {...css(styles.button)}>Copy URL</button>
             </CopyToClipboard>
           )}
@@ -190,7 +190,7 @@ const ImageRecord = (props: Props) => {
 
         <div {...css(styles.urlContainer)}>
           {!isLocal || status === 'uploading' ? (
-            <input readOnly value={remoteURL} {...css(styles.urlBox)} />
+            <input readOnly value={getImageServiceURL(remoteURL)} {...css(styles.urlBox)} />
           ) : null}
         </div>
 
