@@ -182,15 +182,26 @@ const ImageRecord = (props: Props) => {
               Publish
             </button>
           ) : (
-            <CopyToClipboard text={getImageServiceURL(remoteURL)}>
-              <button {...css(styles.button)}>Copy URL</button>
-            </CopyToClipboard>
+            <div>
+              <CopyToClipboard text={getImageServiceURL(remoteURL)}>
+                <button {...css(styles.button)}>Copy Image Service URL</button>
+              </CopyToClipboard>
+              <br />
+              <CopyToClipboard text={remoteURL}>
+                <button {...css(styles.button)}>Copy S3 URL</button>
+              </CopyToClipboard>
+            </div>
           )}
         </div>
 
         <div {...css(styles.urlContainer)}>
           {!isLocal || status === 'uploading' ? (
-            <input readOnly value={getImageServiceURL(remoteURL)} {...css(styles.urlBox)} />
+            <div>
+              <input readOnly value={getImageServiceURL(remoteURL)} {...css(styles.urlBox)} />
+              <br />
+              <input readOnly value={remoteURL} {...css(styles.urlBox)} />
+            </div>
+
           ) : null}
         </div>
 
