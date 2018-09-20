@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { css, withStyles } from '../styles';
@@ -182,7 +182,7 @@ const ImageRecord = (props: Props) => {
               Publish
             </button>
           ) : (
-            <Fragment>
+            <div>
               <CopyToClipboard text={getImageServiceURL(remoteURL)}>
                 <button {...css(styles.button)}>Copy Image Service URL</button>
               </CopyToClipboard>
@@ -190,17 +190,17 @@ const ImageRecord = (props: Props) => {
               <CopyToClipboard text={remoteURL}>
                 <button {...css(styles.button)}>Copy S3 URL</button>
               </CopyToClipboard>
-            </Fragment>
+            </div>
           )}
         </div>
 
         <div {...css(styles.urlContainer)}>
           {!isLocal || status === 'uploading' ? (
-            <Fragment>
+            <div>
               <input readOnly value={getImageServiceURL(remoteURL)} {...css(styles.urlBox)} />
               <br />
               <input readOnly value={remoteURL} {...css(styles.urlBox)} />
-            </Fragment>
+            </div>
 
           ) : null}
         </div>
