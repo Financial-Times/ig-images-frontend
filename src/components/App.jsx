@@ -62,7 +62,7 @@ class App extends Component<Props> {
         }}
         disableClick
         maxSize={30000000}
-        accept="image/png,image/jpeg,image/svg+xml"
+        accept="image/png,image/jpeg,image/svg+xml,image/gif"
         style={{}}
         onDrop={onFilesReceived}
       >
