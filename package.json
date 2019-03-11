@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@financial-times/g-deploy": "^3.0.8",
     "aphrodite": "^1.2.5",
     "babel-eslint": "^8.0.1",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
@@ -30,7 +31,6 @@
     "exhibit-plugin-uglify": "^0.13.1",
     "flow-bin": "^0.57.2",
     "flow-typed": "^2.2.0",
-    "ft-graphics-deploy": "^2.1.4",
     "invariant": "^2.2.2",
     "lodash.debounce": "^4.0.8",
     "nodemon": "^1.12.1",
@@ -52,6 +52,6 @@
   "scripts": {
     "build": "trip build",
     "start": "trip develop",
-    "deploy": "ft-graphics-deploy --confirm"
+    "deploy": "g-deploy --confirm"
   }
 }
