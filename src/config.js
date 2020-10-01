@@ -6,7 +6,7 @@ const {
 
 export default {
   oidc: {
-    clientId: REACT_APP_CLIENT_ID || '0oa5j4bou0TOYSy0g357',
+    clientId: REACT_APP_CLIENT_ID || '0oa5quc26xUOSFbTK357',
     issuer:
       REACT_APP_ISSUER
       || 'https://ft-test.okta.com/oauth2/aus1kd29jg5LHxiFu357',

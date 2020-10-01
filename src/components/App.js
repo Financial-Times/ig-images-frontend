@@ -75,7 +75,7 @@ class App extends Component {
 App.propTypes = {
   styles: PropTypes.objectOf(
     PropTypes.shape({
-      loadingGraphic: PropTypes.string.isRequired,
+      loadingGraphic: PropTypes.string,
       app_draggingFiles: PropTypes.string,
       app_filesRejected: PropTypes.string,
     }),

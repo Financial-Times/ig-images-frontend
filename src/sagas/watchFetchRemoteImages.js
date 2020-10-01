@@ -4,8 +4,6 @@ import * as api from '../lib/api';
 import redirectToLogin from '../lib/waitForAuth';
 
 function* fetchRemoteImages() {
-  // TODO receive the action, and if there's an 'offset', use it.
-
   const {
     authentication: { idToken, accessToken },
   } = yield select();

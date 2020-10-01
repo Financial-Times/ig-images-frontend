@@ -46,7 +46,7 @@
     "flow-install": "flow-typed install",
     "lint": "eslint src",
     "format": "prettier-eslint --write $PWD/'src/**/*.js'",
-    "start": "react-scripts start",
+    "start": "PORT=8000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
