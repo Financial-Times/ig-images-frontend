@@ -5,7 +5,6 @@ import type {
   ActionSetImageUploading,
   ActionClearImageStatus,
   ActionFetchRemoteImages,
-  ActionServiceRefusedCredentials,
   ActionSetRemotePrefix,
   ActionSetAppReady,
   ActionStartUp,
@@ -19,12 +18,12 @@ export const fetchRemoteImages = (): ActionFetchRemoteImages => ({
 });
 
 export const setAuthCredentials = (
-  username: string,
-  token: string,
+  idToken: string,
+  accessToken: string,
 ): ActionSetAuthCredentials => ({
   type: 'SET_AUTH_CREDENTIALS',
-  username,
-  token,
+  idToken,
+  accessToken,
 });
 
 export const setAppReady = (): ActionSetAppReady => ({
@@ -40,11 +39,7 @@ export const startUp = (): ActionStartUp => ({
   type: 'START_UP',
 });
 
-export const serviceRefusedCredentials = (): ActionServiceRefusedCredentials => ({
-  type: 'SERVICE_REFUSED_CREDENTIALS',
-});
-
-export const addRemoteImages = (names: string[]) => ({
+export const addRemoteImages = (names: string[]): Action => ({
   type: 'ADD_REMOTE_IMAGES',
   images: names.map((name) => {
     imageId += 1;

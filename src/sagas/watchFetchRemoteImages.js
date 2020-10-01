@@ -1,17 +1,19 @@
 import { put, takeEvery, select } from 'redux-saga/effects';
 import * as actions from '../actions';
 import * as api from '../lib/api';
-import redirectToLogin from '../lib/redirectToLogin';
+import redirectToLogin from '../lib/waitForAuth';
 
 function* fetchRemoteImages() {
   // TODO receive the action, and if there's an 'offset', use it.
 
-  const { authentication: { username, token } } = yield select();
+  const {
+    authentication: { idToken, accessToken },
+  } = yield select();
 
   // call the service!
   let response;
   try {
-    response = yield api.call('list', { username, token });
+    response = yield api.call('list', { idToken, accessToken });
   } catch (error) {
     if (error instanceof api.BadCredentialsError) {
       yield redirectToLogin();
@@ -23,9 +25,9 @@ function* fetchRemoteImages() {
   const { images, prefix } = response;
 
   if (
-    typeof prefix !== 'string' ||
-    !Array.isArray(images) ||
-    !images.every(item => typeof item === 'string')
+    typeof prefix !== 'string'
+    || !Array.isArray(images)
+    || !images.every((item) => typeof item === 'string')
   ) {
     throw new Error('Bad response from list API');
   }

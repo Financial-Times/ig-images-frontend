@@ -10,6 +10,5 @@
 
 [options]
 experimental.const_params=true
-suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
 experimental.strict_call_arity=true
 emoji=true
