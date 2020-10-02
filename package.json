@@ -50,7 +50,7 @@
     "build": "react-scripts build && mv build dist",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "g-deploy --confirm"
+    "deploy": "g-deploy --assets-prefix=https://ig.ft.com/v2/__assets/"
   },
   "eslintConfig": {
     "extends": [
