@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@financial-times/g-deploy": "^3.0.8",
     "@okta/okta-react": "^3.0.7",
     "aphrodite": "^1.2.5",
     "copy-to-clipboard": "^3.0.8",
     "dotenv": "^4.0.0",
-    "ft-graphics-deploy": "^2.1.4",
     "lodash": "^4.17.20",
     "prettier-eslint-cli": "^5.0.0",
     "react": "^16.13.1",
@@ -47,10 +47,10 @@
     "lint": "eslint src",
     "format": "prettier-eslint --write $PWD/'src/**/*.js'",
     "start": "PORT=8000 react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && mv build dist",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "ft-graphics-deploy --confirm"
+    "deploy": "g-deploy --confirm"
   },
   "eslintConfig": {
     "extends": [

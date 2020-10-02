@@ -21,7 +21,7 @@ jobs:
           command: ./node_modules/.bin/flow
       - run:
           name: Build
-          command: ./node_modules/.bin/trip build
+          command: npm run build
       # - run:
       #     name: AVA tests
       #     command: npm run ava
