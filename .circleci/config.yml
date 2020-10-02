@@ -31,5 +31,8 @@ jobs:
       - store_artifacts:
           path: dist/
       - deploy:
-          name: Deploy
-          command: npm run deploy
+          name: Maybe deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              npm run deploy
+            fi
