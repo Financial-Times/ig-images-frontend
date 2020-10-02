@@ -6,13 +6,9 @@ jobs:
       - image: circleci/node:10-browsers
     steps:
       - checkout
-      - restore_cache:
-          key: ig-images-frontend-{{ checksum "package-lock.json" }}
-      - run: npm install
-      - save_cache:
-          key: ig-images-frontend-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules/
+      - run:
+          name: Install dependencies
+          command: npm install
       - run:
           name: ESLint
           command: ./node_modules/.bin/eslint .
