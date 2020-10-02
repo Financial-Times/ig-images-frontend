@@ -7,4 +7,6 @@ import DefaultTheme from './DefaultTheme';
 ThemedStyleSheet.registerTheme(DefaultTheme);
 ThemedStyleSheet.registerInterface(aphroditeInterface);
 
-export { css, withStyles, ThemeProvider, ThemedStyleSheet };
+export {
+  css, withStyles, ThemeProvider, ThemedStyleSheet,
+};

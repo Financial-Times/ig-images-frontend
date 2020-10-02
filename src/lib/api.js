@@ -3,8 +3,8 @@
 type EndpointName = 'list' | 'get-upload-url';
 
 type ServiceParams = {
-  username: string,
-  token: string,
+  idToken: string,
+  accessToken: string,
   [string]: string,
 };
 
@@ -29,23 +29,29 @@ export const call = async (
   endpointName: EndpointName,
   params: ServiceParams,
 ): Object => {
+  const { idToken, accessToken, ...rest } = params;
   const allParams = {
-    ...params,
+    ...rest,
     host: 'ig-images',
   };
 
   const query = Object.keys(allParams)
-    .map(name =>
-      `${encodeURIComponent(name)}=${encodeURIComponent(allParams[name])}`)
+    .map(
+      (name) => `${encodeURIComponent(name)}=${encodeURIComponent(allParams[name])}`,
+    )
     .join('&');
 
   const url = `${SERVICE_ROOT}${SERVICE_STAGE}/${endpointName}?${query}`;
 
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
 
   // redirect to login if not authorised
   if (res.status === 401) {
-    throw new BadCredentialsError(`The ${endpointName} service responded with a 401`);
+    throw new BadCredentialsError(
+      `The ${endpointName} service responded with a 401`,
+    );
   }
 
   if (!res.ok) throw new Error('Request failed for unknown reason');

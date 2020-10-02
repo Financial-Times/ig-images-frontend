@@ -1,57 +1,97 @@
 {
-  "devDependencies": {
+  "name": "ig-images-frontend-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@financial-times/g-deploy": "^3.0.8",
+    "@okta/okta-react": "^3.0.7",
     "aphrodite": "^1.2.5",
-    "babel-eslint": "^8.0.1",
-    "babel-plugin-transform-flow-strip-types": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-babili": "^0.1.4",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-runtime": "^6.26.0",
     "copy-to-clipboard": "^3.0.8",
-    "cssnano": "^3.10.0",
     "dotenv": "^4.0.0",
-    "envify": "^4.1.0",
-    "eslint": "^4.9.0",
-    "eslint-config-airbnb": "^16.0.0",
-    "eslint-plugin-babel": "^4.1.2",
-    "eslint-plugin-flowtype": "^2.39.1",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.4.0",
-    "exhibit": "^0.13.1",
-    "exhibit-directory": "^0.13.1",
-    "exhibit-plugin-babel": "^0.13.1",
-    "exhibit-plugin-browserify": "^0.13.1",
-    "exhibit-plugin-postcss": "^0.13.1",
-    "exhibit-plugin-serve": "^0.13.1",
-    "exhibit-plugin-uglify": "^0.13.1",
-    "flow-bin": "^0.57.2",
-    "flow-typed": "^2.2.0",
-    "ft-graphics-deploy": "^2.1.4",
-    "invariant": "^2.2.2",
-    "lodash.debounce": "^4.0.8",
-    "nodemon": "^1.12.1",
-    "query-string": "^5.0.0",
-    "react": "^16.0.0",
+    "lodash": "^4.17.20",
+    "prettier-eslint-cli": "^5.0.0",
+    "react": "^16.13.1",
     "react-copy-to-clipboard": "^5.0.1",
-    "react-dom": "^16.0.0",
+    "react-dom": "^16.13.1",
     "react-dropzone": "^4.2.0",
-    "react-redux": "^5.0.6",
+    "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
     "react-with-styles": "^2.2.0",
     "react-with-styles-interface-aphrodite": "^3.1.1",
-    "redux": "^3.7.2",
-    "redux-saga": "^0.16.0",
-    "regenerator-runtime": "^0.11.0",
-    "reselect": "^3.0.1",
-    "trip": "^2.0.0"
+    "redux": "^4.0.5",
+    "redux-saga": "^1.1.3",
+    "prop-types": "^15.7.2"
   },
-  "private": true,
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "babel-eslint": "^10.1.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.6",
+    "flow-bin": "^0.135.0",
+    "flow-typed": "^2.6.2",
+    "prettier-eslint": "^11.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run flow && npm run lint"
+    }
+  },
   "scripts": {
-    "build": "trip build",
-    "start": "trip develop",
-    "deploy": "ft-graphics-deploy --confirm"
+    "flow": "flow",
+    "flow-install": "flow-typed install",
+    "lint": "eslint src",
+    "format": "prettier-eslint --write $PWD/'src/**/*.js'",
+    "start": "PORT=8000 react-scripts start",
+    "build": "react-scripts build && mv build dist",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "deploy": "g-deploy --confirm"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "airbnb",
+      "plugin:flowtype/recommended"
+    ],
+    "rules": {
+      "react/jsx-props-no-spreading": 0,
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      ],
+      "import/no-extraneous-dependencies": [
+        2,
+        {}
+      ],
+      "max-len": 0,
+      "import/prefer-default-export": 0,
+      "no-underscore-dangle": 0
+    }
+  },
+  "eslintIgnore": [
+    "flow-typed",
+    "dist"
+  ],
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

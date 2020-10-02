@@ -6,4 +6,4 @@ The web interface for FT graphics staff to upload to IG Images. (See also: [IG I
 
 CircleCI automatically tests, builds and deploys to S3 this repo via [ft-graphics-deploy](https://github.com/ft-interactive/ft-graphics-deploy).
 
-The rolling `master` deployment is proxied through `https://ig.ft.com/ig-images/`.
+The rolling `master` deployment is proxied through `https://ig.in.ft.com/ig-images/`.

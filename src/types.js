@@ -18,15 +18,11 @@ export type ActionClearImageStatus = { type: 'CLEAR_IMAGE_STATUS', id: number };
 
 export type ActionSetAuthCredentials = {
   type: 'SET_AUTH_CREDENTIALS',
-  username: string,
-  token: string,
+  idToken: string,
+  accessToken: string,
 };
 
 export type ActionFetchRemoteImages = { type: 'FETCH_REMOTE_IMAGES' };
-
-export type ActionServiceRefusedCredentials = {
-  type: 'SERVICE_REFUSED_CREDENTIALS',
-};
 
 export type ActionSetRemotePrefix = {
   type: 'SET_REMOTE_PREFIX',
@@ -50,7 +46,6 @@ export type Action =
   | ActionClearImageStatus
   | ActionSetAuthCredentials
   | ActionFetchRemoteImages
-  | ActionServiceRefusedCredentials
   | ActionStartUp
   | ActionSetRemotePrefix
   | ActionSetAppReady;

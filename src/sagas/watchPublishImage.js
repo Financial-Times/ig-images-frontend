@@ -1,7 +1,9 @@
 // @flow
 
-import { delay, eventChannel, END } from 'redux-saga';
-import { call, take, put, takeEvery, select } from 'redux-saga/effects';
+import { eventChannel, END } from 'redux-saga';
+import {
+  delay, call, take, put, takeEvery, select,
+} from 'redux-saga/effects';
 import * as actions from '../actions';
 import * as api from '../lib/api';
 
@@ -9,52 +11,57 @@ const COMPLETE = Symbol('complete');
 const PROGRESS = Symbol('progress');
 const FAILED = Symbol('failed');
 
-const getFileUploadChannel = (url, file) =>
-  eventChannel((emitter) => {
-    const xhr = new XMLHttpRequest();
+const getFileUploadChannel = (url, file) => eventChannel((emitter) => {
+  const xhr = new XMLHttpRequest();
 
-    xhr.open('PUT', url);
+  xhr.open('PUT', url);
 
-    xhr.upload.addEventListener(
-      'progress',
-      (event: Event & {
+  xhr.upload.addEventListener(
+    'progress',
+    (
+      event: Event & {
           lengthComputable: boolean,
           loaded: number,
           total: number,
-        }) => {
-        if (event.lengthComputable) {
-          emitter({ type: PROGRESS, value: event.loaded / event.total });
-        }
-      },
-    );
+        },
+    ) => {
+      if (event.lengthComputable) {
+        emitter({ type: PROGRESS, value: event.loaded / event.total });
+      }
+    },
+  );
 
-    xhr.addEventListener('load', () => {
-      emitter({ type: COMPLETE });
-      emitter(END);
-    });
-
-    xhr.addEventListener('error', () => {
-      // NB. not taking 'error' arg here, because it causes a bug in Flow. But ideally we would log it.
-      emitter({ type: FAILED });
-      emitter(END);
-    });
-
-    xhr.send(file);
-
-    return () => {
-      xhr.abort();
-    };
+  xhr.addEventListener('load', () => {
+    emitter({ type: COMPLETE });
+    emitter(END);
   });
 
+  xhr.addEventListener('error', () => {
+    // NB. not taking 'error' arg here, because it causes a bug in Flow. But ideally we would log it.
+    emitter({ type: FAILED });
+    emitter(END);
+  });
+
+  xhr.send(file);
+
+  return () => {
+    xhr.abort();
+  };
+});
+
 export default function* watchPublishImage(): Generator<*, *, *> {
-  yield takeEvery('PUBLISH_IMAGE', function* publishImage(action): Generator<*, *, *> {
+  yield takeEvery('PUBLISH_IMAGE', function* publishImage(
+    action,
+  ): Generator<*, *, *> {
     yield put(actions.setImageUploading(action.id));
 
-    const { authentication: { username, token } } = yield select();
+    const {
+      authentication: { idToken, accessToken },
+    } = yield select();
 
     const { url, name } = yield api.call('get-upload-url', {
-      username,
-      token,
+      idToken,
+      accessToken,
       type: action.file.type,
     });
 

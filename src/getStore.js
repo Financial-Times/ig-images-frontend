@@ -5,10 +5,9 @@ import createSagaMiddleware from 'redux-saga';
 import appReducer from './reducers';
 import rootSaga from './sagas';
 
-export default () => {
+export default (): Object => {
   // eslint-disable-next-line no-underscore-dangle
-  const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
   const sagaMiddleware = createSagaMiddleware();
 
