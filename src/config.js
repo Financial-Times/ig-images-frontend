@@ -14,7 +14,7 @@ export default {
       REACT_APP_DISABLE_HTTPS_CHECK != null
         ? REACT_APP_DISABLE_HTTPS_CHECK
         : true,
-    redirectUri: `${window.location.origin}/implicit/callback`,
+    redirectUri: `${window.location.origin}/ig-images/implicit/callback`,
     scopes: ['openid', 'profile', 'email'],
     pkce: true,
   },
