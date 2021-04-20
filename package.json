@@ -9,7 +9,7 @@
     "copy-to-clipboard": "^3.0.8",
     "dotenv": "^4.0.0",
     "lodash": "^4.17.20",
-    "prettier-eslint-cli": "^5.0.0",
+    "prettier-eslint-cli": "^5.0.1",
     "react": "^16.13.1",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.13.1",
