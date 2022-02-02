@@ -13,9 +13,6 @@ jobs:
           name: ESLint
           command: ./node_modules/.bin/eslint .
       - run:
-          name: Flow type-checking
-          command: ./node_modules/.bin/flow
-      - run:
           name: Build
           command: npm run build
       # - run:
